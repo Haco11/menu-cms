@@ -1,0 +1,87 @@
+/* Signin.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.logoContainer {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.formContainer {
+  width: 300px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.inputContainer {
+  margin-bottom: 16px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.passwordField {
+  display: flex;
+  justify-content: space-between;
+}
+
+.forgotPassword {
+  font-size: 12px;
+  color: #888;
+  cursor: pointer;
+}
+
+.submitButtonContainer {
+  margin-top: 20px;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 12px;
+  background-color: #0070f3;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.signupLink {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #333;
+}
+
+.signupButton {
+  margin-left: 5px;
+  color: #0070f3;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
