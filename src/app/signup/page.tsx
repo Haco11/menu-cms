@@ -1,8 +1,9 @@
 "use client";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { auth } from "../firebaseConfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
+import { auth, db } from "../firebaseConfig";
+import { useRouter } from "next/navigation";
 import styles from "./Signup.module.css";
 
 export default function Signup() {
@@ -11,8 +12,32 @@ export default function Signup() {
   const [passwordAgain, setPasswordAgain] = useState("");
   const router = useRouter();
 
-  const signup = () => {
-    createUserWithEmailAndPassword(auth, email, password);
+  const signup = async () => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      // Access user information from userCredential
+      const userId = userCredential.user.uid;
+      const userEmail = userCredential.user.email;
+
+      // Add the user to the "users" collection in Firestore
+      const usersCollection = collection(db, "users");
+      const userDocRef = await addDoc(usersCollection, {
+        uid: userId,
+        email: userEmail,
+      });
+
+      console.log("User added to Firestore with document ID:", userDocRef.id);
+
+      // Navigate to another page after successful signup
+      router.push("/signin");
+    } catch (error) {
+      console.error("Error signing up:", error);
+    }
   };
 
   const isSignUpDisabled =
@@ -82,7 +107,6 @@ export default function Signup() {
         </button>
 
         <p className={styles["signup-link"]}>
-          Already have an account?{" "}
           <button
             onClick={() => router.push("/signin")}
             className={styles["signup-link-button"]}>
